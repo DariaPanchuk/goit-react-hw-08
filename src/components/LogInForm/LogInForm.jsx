@@ -52,17 +52,3 @@ const LogInForm = () => {
 }
 
 export default LogInForm;
-
-
-// {
-//   type: 'auth/register/pending',
-//   meta: {
-//     arg: {
-//       name: 'test',
-//       email: 'test@email.com',
-//       password: 'V!3UDue..87mqsZ'
-//     },
-//     requestId: 'BfKN-NAhc4JaY2AcXH1mD',
-//     requestStatus: 'pending'
-//   }
-// }

@@ -8,8 +8,8 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 
 export const selectAuth = createSelector([selectUser, selectIsLoggedIn, selectIsRefreshing], (user, isLoggedIn, isRefreshing) => {
     return {
+        user,
         isLoggedIn,
         isRefreshing,
-        user,
     };
 });

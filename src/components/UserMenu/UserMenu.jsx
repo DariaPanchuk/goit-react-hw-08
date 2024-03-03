@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectAuth } from '../../redux/auth/selectors';
 import { logOut } from '../../redux/auth/operations';
 import clsx from 'clsx';
@@ -11,7 +11,7 @@ const buildLinkClass = ({ isActive }) => {
 
 const UserMenu = () => {
     const dispatch = useDispatch();
-    const { user } = selectAuth;
+    const { user } = useSelector(selectAuth);
 
     return (
         <div className={css.nav}>

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { selectAuth } from '../../redux/auth/selectors';
 import UserMenu from '../UserMenu/UserMenu';
 import AuthNav from '../AuthNav/AuthNav';
@@ -10,7 +11,7 @@ const buildLinkClass = ({ isActive }) => {
 };
 
 const Navigation = () => {
-    const { isLoggedIn } = selectAuth;
+    const { isLoggedIn } = useSelector(selectAuth);
 
     return (
         <nav className={css.nav}>
