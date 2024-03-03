@@ -18,7 +18,7 @@ const UserMenu = () => {
             <NavLink to="/contacts" className={buildLinkClass}>
                 Contacts
             </NavLink>
-            <p>Welcome, {user.name}</p>
+            <p>Welcome, {user}</p>
             <button type="button" onClick={() => dispatch(logOut())}>
                 Logout
         </button>
