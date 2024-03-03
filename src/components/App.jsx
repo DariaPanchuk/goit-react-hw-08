@@ -27,7 +27,7 @@ const App = () => {
   return isRefreshing ? (
   <Loader />
   ) : (
-    <div>
+    <div className={css.container}>
       <Navigation />
 
       <Suspense fallback={<Loader />}>

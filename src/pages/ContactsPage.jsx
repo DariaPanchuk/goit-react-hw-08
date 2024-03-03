@@ -16,7 +16,7 @@ export default function ContactsPage() {
 
     useEffect(() => {
         setLoad(true);
-        setError(false)
+        setError(false);
         dispatch(fetchContacts()).unwrap()
             .then(() => setLoad(false))
             .catch(() => setError(true));

@@ -67,29 +67,3 @@ const RegisterForm = () => {
 }
 
 export default RegisterForm;
-
-
-// {
-//   type: 'auth/register/pending',
-//   meta: {
-//     arg: {
-//       name: 'test',
-//       email: 'test@email.com',
-//       password: 'V!3UDue..87mqsZ'
-//     },
-//     requestId: 'BfKN-NAhc4JaY2AcXH1mD',
-//     requestStatus: 'pending'
-//   }
-// }
-
-    //   name: 'rwest4d5gyhuoj9i',
-    //   email: 'testiemestie@email.com',
-//   password: 'V!3UDue..87mqsZ'
-    
-    //   name: 'y5r6tfu6i',
-    //   email: 'blahblahblah@gmail.com',
-//   password: ']rhgdytuturtuduf6tutfT'
-    
-
-//    name: 'aserftdyeryhtfh',
-//     email: 'dgdsferdgsedf@gmail.com'

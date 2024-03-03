@@ -10,7 +10,7 @@ const validation = Yup.object().shape({
         .min(3, "Not enough symbols!")
         .max(50, "Too long!")
         .required("Required field!"),
-    phone: Yup.string()
+    number: Yup.string()
         .min(9, "Not enough symbols!")
         .max(9, "Too long!")
         .required("Required field!"),
@@ -20,7 +20,7 @@ const ContactForm = () => {
     const dispatch = useDispatch();
 
     const nameField = useId();
-    const phoneField = useId();
+    const numberField = useId();
     
     const handleSubmit = (values, actions) => {
         dispatch(addContact({ ...values }));
@@ -31,7 +31,7 @@ const ContactForm = () => {
         <Formik
             initialValues={{
                 name: "",
-                phone: ""
+                number: ""
             }}
             onSubmit={handleSubmit}
             validationSchema={validation}
@@ -43,9 +43,9 @@ const ContactForm = () => {
                     <ErrorMessage className={css.error} name="name" component="span" />
                 </div>
                 <div className={css.item}>
-                    <label className={css.label} htmlFor={phoneField}>Phone</label>
-                    <Field className={css.input} type="text" name="phone" id={phoneField} />
-                    <ErrorMessage className={css.error} name="phone" component="span" />
+                    <label className={css.label} htmlFor={numberField}>Phone</label>
+                    <Field className={css.input} type="text" name="number" id={numberField} />
+                    <ErrorMessage className={css.error} name="number" component="span" />
                 </div>
                 <button className={css.button} type="submit">Add contact</button>
             </Form>
