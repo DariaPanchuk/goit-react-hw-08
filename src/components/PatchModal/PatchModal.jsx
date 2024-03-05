@@ -43,7 +43,7 @@ export const PatchModal = ({ isOpen, onAfterOpen, onRequestClose, selectedItem, 
                             name: selectedItem.name,
                             number: selectedItem.number
                         }}
-                        onSubmit={(values, actions) => { handlePatch({ ...values }), actions.resetForm() }}
+                        onSubmit={(values, actions) => { handlePatch({ ...values }), onRequestClose() }}
                         validationSchema={validation}
                     >
                         <Form className={css.form}>

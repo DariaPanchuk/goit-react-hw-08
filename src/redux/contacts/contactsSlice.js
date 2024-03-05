@@ -44,7 +44,7 @@ const contactsSlice = createSlice({
             .addCase(patchContact.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.items = state.items.map(item => item.id === action.payload.id ? item = action.payload : item);
+                state.items = state.items.map(item => item.id === action.payload.id ? action.payload : item);
             })
             .addCase(patchContact.rejected, handleRejected)
     },
