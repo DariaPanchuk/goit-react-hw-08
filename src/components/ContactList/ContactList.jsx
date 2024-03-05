@@ -11,7 +11,7 @@ const ContactList = ({openPatchModal, openDeleteModal}) => {
             {
                 contacts.map(contact => (
                     <li key={contact.id}>
-                        <Contact contact={contact} openPatchModal={() => openPatchModal(contact.id)} openDeleteModal={() => openDeleteModal(contact.id)}/>
+                        <Contact contact={contact} openPatchModal={() => openPatchModal(contact)} openDeleteModal={() => openDeleteModal(contact)}/>
                     </li>
                 ))
             }

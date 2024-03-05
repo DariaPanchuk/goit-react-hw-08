@@ -1,7 +1,7 @@
 import { FiPhone, FiUser } from "react-icons/fi";
 import css from './Contact.module.css';
 
-const Contact = ({ contact: { name, number }, openDeleteModal, openPatchModal }) => {
+const Contact = ({ contact: { name, number, id }, openDeleteModal, openPatchModal }) => {
     return (
         <div className={css.item}>
             <div className={css.info}>
