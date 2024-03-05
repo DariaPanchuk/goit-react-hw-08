@@ -6,7 +6,6 @@ import css from './DeleteModal.module.css';
 Modal.setAppElement('#root');
 
 export const DeleteModal = ({ isOpen, onAfterOpen, onRequestClose, selectedItem: { id }, handleDelete }) => {
-    console.log(id);
     return (
         <div>
             <Modal
