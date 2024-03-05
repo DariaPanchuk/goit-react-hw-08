@@ -1,11 +1,10 @@
+import { useState } from 'react';
 import { FiPhone, FiUser } from "react-icons/fi";
-import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/operations';
+import ButtonLoader from "../ButtonLoader/ButtonLoader";
 import css from './Contact.module.css';
 
-const Contact = ({ contact: { name, number, id } }) => {
-    const dispatch = useDispatch();
-    const handleDelete = () => dispatch(deleteContact(id));
+const Contact = ({ contact: { name, number }, onClick }) => {
+    const [load, setLoad] = useState(false);
 
     return (
         <div className={css.item}>
@@ -13,7 +12,10 @@ const Contact = ({ contact: { name, number, id } }) => {
                 <p className={css.name}><FiUser className={css.icon} /> {name}</p>
                 <p className={css.number}><FiPhone className={css.icon} /> {number}</p>
             </div>
-            <button className={css.button} onClick={handleDelete}>Delete</button>
+            <div className={css.buttons}>
+                <button className={css.button} onClick={() => {onClick(), setLoad(true)}}>{load ? <ButtonLoader/> : "Delete"}</button>
+                <button className={css.button} onClick={() => {onClick()}}>Edit</button>
+            </div>
         </div>
     );
 };

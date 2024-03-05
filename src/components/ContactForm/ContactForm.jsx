@@ -28,28 +28,28 @@ const ContactForm = () => {
     };
 
     return (
-        <Formik
-            initialValues={{
-                name: "",
-                number: ""
-            }}
-            onSubmit={handleSubmit}
-            validationSchema={validation}
-        >
-            <Form className={css.form}>
-                <div className={css.item}>
-                    <label className={css.label} htmlFor={nameField}>Name</label>
-                    <Field className={css.input} type="text" name="name" id={nameField} />
-                    <ErrorMessage className={css.error} name="name" component="span" />
-                </div>
-                <div className={css.item}>
-                    <label className={css.label} htmlFor={numberField}>Phone</label>
-                    <Field className={css.input} type="text" name="number" id={numberField} />
-                    <ErrorMessage className={css.error} name="number" component="span" />
-                </div>
-                <button className={css.button} type="submit">Add contact</button>
-            </Form>
-        </Formik>
+            <Formik
+                initialValues={{
+                    name: "",
+                    number: ""
+                }}
+                onSubmit={handleSubmit}
+                validationSchema={validation}
+            >
+                <Form className={css.form}>
+                    <div className={css.item}>
+                        <label className={css.label} htmlFor={nameField}>Name</label>
+                        <Field className={css.input} type="text" name="name" id={nameField} />
+                        <ErrorMessage className={css.error} name="name" component="span" />
+                    </div>
+                    <div className={css.item}>
+                        <label className={css.label} htmlFor={numberField}>Phone</label>
+                        <Field className={css.input} type="text" name="number" id={numberField} />
+                        <ErrorMessage className={css.error} name="number" component="span" />
+                    </div>
+                    <button className={css.button} type="submit">Add contact</button>
+                </Form>
+            </Formik>
     );
 };
 

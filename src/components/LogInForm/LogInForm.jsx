@@ -1,9 +1,16 @@
-import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import css from "./LogInForm.module.css";
+
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+import { blue } from '@mui/material/colors';
 
 const validation = Yup.object().shape({
     email: Yup.string()
@@ -19,43 +26,77 @@ const validation = Yup.object().shape({
         .required("Required field!"),
 });
 
-
 const LogInForm = () => {
     const dispatch = useDispatch();
-    const emailField = useId();
-    const passwordField = useId();
 
     const handleSubmit = (values, actions) => {
         dispatch(logIn({ ...values }));
         actions.resetForm();
     };
 
+    const initialValues = {
+        email: "",
+        password: "",
+    };
+
+    const ColorButton = styled(Button)(({ theme }) => ({
+        color: theme.palette.getContrastText(blue[500]),
+        backgroundColor: blue[500],
+        '&:hover': {
+            backgroundColor: blue[800],
+        },
+    }));
+
+
     return (
         <div className={css.container}>
-            <Formik
-                initialValues={{
-                    name: "",
-                    email: "",
-                }}
-                onSubmit={handleSubmit}
-                validationSchema={validation}
-            >
-                <Form className={css.form}>
-                    <div className={css.item}>
-                        <label className={css.label} htmlFor={emailField}>Email</label>
-                        <Field className={css.input} type="email" name="email" id={emailField} />
-                        <ErrorMessage className={css.error} name="email" component="span" />
-                    </div>
-                    <div className={css.item}>
-                        <label className={css.label} htmlFor={passwordField}>Password</label>
-                        <Field className={css.input} type="password" name="password" id={passwordField} />
-                        <ErrorMessage className={css.error} name="password" component="span" />
-                    </div>
-                    <button className={css.button} type="submit">Log In</button>
-                </Form>
-            </Formik>
+            <Grid container>
+                <Grid item sm={4} xs={false}></Grid>
+                <Grid item sm={4} xs={8}>
+                    <Paper>
+                        <Box m={3} p={2} >
+                            <Formik
+                                initialValues={initialValues}
+                                validationSchema={validation}
+                                onSubmit={handleSubmit}
+                            >
+                                {(props) => {
+                                    return (
+                                        <Form>
+                                            <Field
+                                                as={TextField}
+                                                label="Email"
+                                                type="Email"
+                                                name="email"
+                                                fullWidth
+                                                variant="outlined"
+                                                margin="dense"
+                                                helperText={<ErrorMessage name="email" />}
+                                                error={props.errors.email && props.touched.email}
+                                            />
+                                            <Field
+                                                as={TextField}
+                                                label="Password"
+                                                name="password"
+                                                type="password"
+                                                fullWidth
+                                                variant="outlined"
+                                                margin="dense"
+                                                helperText={<ErrorMessage name="password" />}
+                                                error={props.errors.password && props.touched.password}
+                                            />
+                                            <ColorButton variant="contained" type="submit" fullWidth>Log In</ColorButton>
+                                        </Form>
+                                    );
+                                }}
+                            </Formik>
+                        </Box>
+                    </Paper>
+                </Grid>
+                <Grid item sm={4} xs={false}></Grid>
+            </Grid>
         </div>
-    )
-}
+    );
+};
 
 export default LogInForm;

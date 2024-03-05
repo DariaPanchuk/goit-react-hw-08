@@ -2,9 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 250px;
+    width: 300px;
     padding: 10px;
-    border: 1px solid #111;
+    border: 1px solid #0d47a1;
+    border-radius: 8px;
+    font-size: 18px;
 }
 
 .info {
@@ -29,12 +31,21 @@
 .button {
     width: 60px;
     height: 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: #bbdefb;
 }
 
 .button:hover,
 .button:focus {
     cursor: pointer;
-    background-color: #111;
+    background-color: #2196f3;
     color: #fff;
     transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }

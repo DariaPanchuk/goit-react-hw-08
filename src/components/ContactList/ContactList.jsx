@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectVisibleContacts } from "../../redux/contacts/selectors";
 import css from "./ContactList.module.css";
 
-const ContactList = () => {
+const ContactList = ({onClick}) => {
     const contacts = useSelector(selectVisibleContacts);
 
     return (
@@ -11,7 +11,7 @@ const ContactList = () => {
             {
                 contacts.map(contact => (
                     <li key={contact.id}>
-                        <Contact contact={contact} />
+                        <Contact contact={contact} onClick={() => onClick(contact.id)}/>
                     </li>
                 ))
             }
