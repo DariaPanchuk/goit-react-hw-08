@@ -42,8 +42,8 @@ export const PatchModal = ({ isOpen, onAfterOpen, onRequestClose, selectedItem, 
                 <div className={css.container}>
                     <Formik
                         initialValues={{
-                            name: selectedItem.name,
-                            number: selectedItem.number
+                            name: "",
+                            number: ""
                         }}
                         onSubmit={(values, actions) => { handlePatch({ ...values }), actions.resetForm() }}
                         validationSchema={validation}
