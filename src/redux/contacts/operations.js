@@ -36,7 +36,7 @@ export const addContact = createAsyncThunk("contacts/add",
     }
 );
 
-export const patchContact = createAsyncThunk("contacts/ed",
+export const patchContact = createAsyncThunk("contacts/edit",
     async (contactId, contact, thunkAPI) => {
         try {
             const response = await axios.post(`/contacts/${contactId}`, contact);

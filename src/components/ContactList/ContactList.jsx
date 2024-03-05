@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectVisibleContacts } from "../../redux/contacts/selectors";
 import css from "./ContactList.module.css";
 
-const ContactList = ({onClick}) => {
+const ContactList = ({openPatchModal, openDeleteModal}) => {
     const contacts = useSelector(selectVisibleContacts);
 
     return (
@@ -11,7 +11,7 @@ const ContactList = ({onClick}) => {
             {
                 contacts.map(contact => (
                     <li key={contact.id}>
-                        <Contact contact={contact} onClick={() => onClick(contact.id)}/>
+                        <Contact contact={contact} openPatchModal={() => openPatchModal(contact.id)} openDeleteModal={() => openDeleteModal(contact.id)}/>
                     </li>
                 ))
             }

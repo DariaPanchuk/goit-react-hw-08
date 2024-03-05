@@ -23,6 +23,8 @@ export const PatchModal = ({ isOpen, onAfterOpen, onRequestClose, selectedItem, 
     const nameField = useId();
     const numberField = useId();
 
+    console.log(selectedItem);
+
     return (
         <div>
             <Modal

@@ -1,11 +1,7 @@
-import { useState } from 'react';
 import { FiPhone, FiUser } from "react-icons/fi";
-import ButtonLoader from "../ButtonLoader/ButtonLoader";
 import css from './Contact.module.css';
 
-const Contact = ({ contact: { name, number }, onClick }) => {
-    const [load, setLoad] = useState(false);
-
+const Contact = ({ contact: { name, number }, openDeleteModal, openPatchModal }) => {
     return (
         <div className={css.item}>
             <div className={css.info}>
@@ -13,8 +9,8 @@ const Contact = ({ contact: { name, number }, onClick }) => {
                 <p className={css.number}><FiPhone className={css.icon} /> {number}</p>
             </div>
             <div className={css.buttons}>
-                <button className={css.button} onClick={() => {onClick(), setLoad(true)}}>{load ? <ButtonLoader/> : "Delete"}</button>
-                <button className={css.button} onClick={() => {onClick()}}>Edit</button>
+                <button className={css.button} onClick={() => {openDeleteModal()}}>Delete</button>
+                <button className={css.button} onClick={() => {openPatchModal()}}>Edit</button>
             </div>
         </div>
     );

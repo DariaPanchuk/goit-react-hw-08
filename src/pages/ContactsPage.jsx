@@ -15,7 +15,8 @@ export default function ContactsPage() {
     const [load, setLoad] = useState(false);
     const [error, setError] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+    const [patchModalIsOpen, setPatchModalIsOpen] = useState(false);
     
     const dispatch = useDispatch();
 
@@ -35,9 +36,14 @@ export default function ContactsPage() {
         dispatch(patchContact(selectedItem));
     };
 
-    function openModal(item) {
+    function openDeleteModal(item) {
     setSelectedItem(item);
-    setIsOpen(true);
+    setDeleteModalIsOpen(true);
+    }
+
+    function openPatchModal(item) {
+    setSelectedItem(item);
+    setPatchModalIsOpen(true);
     }
 
     function afterOpenModal() {
@@ -46,7 +52,8 @@ export default function ContactsPage() {
 
     function closeModal() {
     document.body.style.overflow = "scroll";
-    setIsOpen(false);
+    setDeleteModalIsOpen(false);
+    setPatchModalIsOpen(false);
     }
 
     return (
@@ -56,9 +63,9 @@ export default function ContactsPage() {
             {error && <ErrorMessage />}
             <ContactForm />
             <SearchBox />
-            <ContactList onClick={openModal} />
-            {selectedItem && <DeleteModal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} selectedItem={selectedItem} handleDelete={handleDelete} />}
-            {selectedItem && <PatchModal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} selectedItem={selectedItem} handlePatch={handlePatch} />}
+            <ContactList openDeleteModal={openDeleteModal} openPatchModal={openPatchModal} />
+            {selectedItem && <DeleteModal isOpen={deleteModalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} selectedItem={selectedItem} handleDelete={handleDelete} />}
+            {selectedItem && <PatchModal isOpen={patchModalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} selectedItem={selectedItem} handlePatch={handlePatch} />}
         </div>
     )
 }
