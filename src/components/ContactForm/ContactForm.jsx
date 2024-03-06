@@ -1,6 +1,7 @@
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import toast from 'react-hot-toast';
 import css from "./ContactForm.module.css";
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
@@ -23,7 +24,34 @@ const ContactForm = () => {
     const numberField = useId();
     
     const handleSubmit = (values, actions) => {
-        dispatch(addContact({ ...values }));
+        dispatch(addContact({ ...values }))
+            .unwrap()
+            .then(() => {
+                toast.success('Contact successfully added!', {
+                    style: {
+                        border: '1px solid #0d47a1',
+                        padding: '16px',
+                        color: '#111',
+                    },
+                    iconTheme: {
+                        primary: '#2196f3',
+                        secondary: '#fff',
+                    },
+                });
+            })
+            .catch(() => {
+                toast.error('Oops, something go wrong!', {
+                    style: {
+                        border: '1px solid #F1041B',
+                        padding: '16px',
+                        color: '#111',
+                    },
+                    iconTheme: {
+                        primary: '#F1041B',
+                        secondary: '#fff',
+                    },
+                });
+                })
         actions.resetForm();
     };
 

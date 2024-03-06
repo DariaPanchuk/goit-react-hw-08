@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import toast from 'react-hot-toast';
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import css from "./RegisterForm.module.css";
@@ -34,7 +35,34 @@ const RegisterForm = () => {
     const dispatch = useDispatch();
 
     const handleSubmit = (values, actions) => {
-        dispatch(register({ ...values }));
+        dispatch(register({ ...values }))
+            .unwrap()
+            .then(() => {
+                toast.success('Welcome!', {
+                    style: {
+                        border: '1px solid #0d47a1',
+                        padding: '16px',
+                        color: '#111',
+                    },
+                    iconTheme: {
+                        primary: '#2196f3',
+                        secondary: '#fff',
+                    },
+                });
+            })
+            .catch(() => {
+                toast.error('Oops, something go wrong!', {
+                    style: {
+                        border: '1px solid #F1041B',
+                        padding: '16px',
+                        color: '#111',
+                    },
+                    iconTheme: {
+                        primary: '#F1041B',
+                        secondary: '#fff',
+                    },
+                });
+                })
         actions.resetForm();
     };
 

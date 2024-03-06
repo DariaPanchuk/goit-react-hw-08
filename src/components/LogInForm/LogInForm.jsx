@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
+import toast from 'react-hot-toast';
 import css from "./LogInForm.module.css";
 
 import Box from '@mui/material/Box';
@@ -30,7 +31,34 @@ const LogInForm = () => {
     const dispatch = useDispatch();
 
     const handleSubmit = (values, actions) => {
-        dispatch(logIn({ ...values }));
+        dispatch(logIn({ ...values }))
+            .unwrap()
+            .then(() => {
+                toast.success('Welcome!', {
+                    style: {
+                        border: '1px solid #0d47a1',
+                        padding: '16px',
+                        color: '#111',
+                    },
+                    iconTheme: {
+                        primary: '#2196f3',
+                        secondary: '#fff',
+                    },
+                });
+            })
+            .catch(() => {
+                toast.error('Oops, something go wrong!', {
+                    style: {
+                        border: '1px solid #F1041B',
+                        padding: '16px',
+                        color: '#111',
+                    },
+                    iconTheme: {
+                        primary: '#F1041B',
+                        secondary: '#fff',
+                    },
+                });
+                })
         actions.resetForm();
     };
 
