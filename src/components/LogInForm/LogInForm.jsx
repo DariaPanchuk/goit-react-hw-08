@@ -45,6 +45,7 @@ const LogInForm = () => {
                         secondary: '#fff',
                     },
                 });
+                actions.resetForm();
             })
             .catch(() => {
                 toast.error('Oops, something go wrong!', {
@@ -59,7 +60,6 @@ const LogInForm = () => {
                     },
                 });
                 })
-        actions.resetForm();
     };
 
     const initialValues = {

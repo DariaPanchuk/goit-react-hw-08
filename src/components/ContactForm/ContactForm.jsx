@@ -38,6 +38,7 @@ const ContactForm = () => {
                         secondary: '#fff',
                     },
                 });
+                actions.resetForm();
             })
             .catch(() => {
                 toast.error('Oops, something go wrong!', {
@@ -52,7 +53,6 @@ const ContactForm = () => {
                     },
                 });
                 })
-        actions.resetForm();
     };
 
     return (

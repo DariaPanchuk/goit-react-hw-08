@@ -49,6 +49,7 @@ const RegisterForm = () => {
                         secondary: '#fff',
                     },
                 });
+                actions.resetForm();
             })
             .catch(() => {
                 toast.error('Oops, something go wrong!', {
@@ -63,7 +64,6 @@ const RegisterForm = () => {
                     },
                 });
                 })
-        actions.resetForm();
     };
 
     const initialValues = {
