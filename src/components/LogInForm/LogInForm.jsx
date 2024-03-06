@@ -1,8 +1,10 @@
+import { useDispatch } from "react-redux";
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-import { logIn } from "../../redux/auth/operations";
 import toast from 'react-hot-toast';
+import { logIn } from "../../redux/auth/operations";
+import ButtonLoader from "../ButtonLoader/ButtonLoader";
 import css from "./LogInForm.module.css";
 
 import Box from '@mui/material/Box';
@@ -28,9 +30,11 @@ const validation = Yup.object().shape({
 });
 
 const LogInForm = () => {
+    const [load, setLoad] = useState(false);
     const dispatch = useDispatch();
 
     const handleSubmit = (values, actions) => {
+        setLoad(true);
         dispatch(logIn({ ...values }))
             .unwrap()
             .then(() => {
@@ -46,6 +50,7 @@ const LogInForm = () => {
                     },
                 });
                 actions.resetForm();
+                setLoad(false);
             })
             .catch(() => {
                 toast.error('Oops, something go wrong!', {
@@ -59,6 +64,7 @@ const LogInForm = () => {
                         secondary: '#fff',
                     },
                 });
+                setLoad(false);
                 })
     };
 
@@ -113,7 +119,7 @@ const LogInForm = () => {
                                                 helperText={<ErrorMessage name="password" />}
                                                 error={props.errors.password && props.touched.password}
                                             />
-                                            <ColorButton variant="contained" type="submit" fullWidth>Log In</ColorButton>
+                                            <ColorButton variant="contained" type="submit" fullWidth>{load ? <ButtonLoader /> : "Log In"}</ColorButton>
                                         </Form>
                                     );
                                 }}

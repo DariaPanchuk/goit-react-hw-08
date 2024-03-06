@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import toast from 'react-hot-toast';
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
+import ButtonLoader from "../ButtonLoader/ButtonLoader";
 import css from "./RegisterForm.module.css";
 
 import Box from '@mui/material/Box';
@@ -32,9 +34,11 @@ const validation = Yup.object().shape({
 });
 
 const RegisterForm = () => {
+    const [load, setLoad] = useState(false);
     const dispatch = useDispatch();
 
     const handleSubmit = (values, actions) => {
+        setLoad(true);
         dispatch(register({ ...values }))
             .unwrap()
             .then(() => {
@@ -50,6 +54,7 @@ const RegisterForm = () => {
                     },
                 });
                 actions.resetForm();
+                setLoad(false);
             })
             .catch(() => {
                 toast.error('Oops, something go wrong!', {
@@ -63,6 +68,7 @@ const RegisterForm = () => {
                         secondary: '#fff',
                     },
                 });
+                setLoad(false);
                 })
     };
 
@@ -143,7 +149,7 @@ const RegisterForm = () => {
                                                     props.touched.confirmPassword
                                                 }
                                             />
-                                            <ColorButton variant="contained" type="submit" fullWidth>Register</ColorButton>
+                                            <ColorButton variant="contained" type="submit" fullWidth>{load ? <ButtonLoader /> : "Register"}</ColorButton>
                                         </Form>
                                     );
                                 }}
